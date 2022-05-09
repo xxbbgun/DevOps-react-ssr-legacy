@@ -28,7 +28,7 @@ class AddList extends Component {
   render() {
     const { toggleAddingList } = this.props;
     const { title } = this.state;
-
+console.log('test')
     return (
       <div className="Add-List-Editor">
         <ListEditor
