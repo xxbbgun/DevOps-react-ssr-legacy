@@ -23,6 +23,7 @@ jobs:
         run:  docker build -t app-dev .
 
   build application in prod:
+  needs: [ build application in dev ]
     runs-on: ubuntu-latest
     container: builder
     steps:
