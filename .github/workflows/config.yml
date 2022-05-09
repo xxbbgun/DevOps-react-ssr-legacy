@@ -18,24 +18,4 @@ jobs:
 
       - name: Build Application
         command: yarn start
-      
-      - name: Build the Docker image
-        run:  docker build -t app-dev .
-
-  build application in prod:
-  needs: [ build application in dev ]
-    runs-on: ubuntu-latest
-    container: builder
-    steps:
-      - name: Check code
-        uses: actions/checkout@v3
-
-      - name: Install dependency
-        command: yarn
-
-      - name: Build Application
-        command: yarn start
-      
-      - name: Build the Docker image
-        run:  docker build -t app-prod .
 
