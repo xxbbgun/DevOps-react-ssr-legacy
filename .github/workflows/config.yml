@@ -1,23 +1,27 @@
-name: GitHub Actions CI
+name: Github actions CI
 on:
   push:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]
-  workflow_dispatch:
+  # When pushing to any branch then run this action
+# Env variable
+env:
+  DOCKER_USER: tharinee35033
+  DOCKER_PASSWORD: tharinee35033
+  REPO_NAME: tharinee35033/docker-push-devops
 jobs:
-  development:
-    runs-on: ubuntu-latest
-    container: node:16
+  push-image-to-docker-hub:  # job name
+    runs-on: ubuntu-latest  # runner name : (ubuntu latest version) 
     steps:
-      - name: Check code
-        uses: actions/checkout@v3
-
-      - name: Install dependency
-        run: yarn
-      - name: Docker
-      - uses: actions/checkout@v3
-        with:
-          image: app-dev
-          registry: docker.pkg.github.com
-          dockerfile: Dockerfile
+    - uses: actions/checkout@v2 # first action : checkout source code
+    - name: docker login
+      run: | # log into docker hub account
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD  
+    - name: Get current date # get the date of the build
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+    - name: Build the Docker image # push The image to the docker hub
+      run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
+    - name: Docker Push
+      run: docker push $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
