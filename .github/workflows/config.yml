@@ -6,7 +6,7 @@ on:
     branches: [ develop ]
   workflow_dispatch:
 jobs:
-  build:
+  development:
     runs-on: ubuntu-latest
     container: node:16
     steps:
@@ -15,4 +15,8 @@ jobs:
 
       - name: Install dependency
         run: yarn
-        
+      - name: Docker
+        with:
+          image: app-dev
+          registry: docker.pkg.github.com
+          dockerfile: Dockerfile
