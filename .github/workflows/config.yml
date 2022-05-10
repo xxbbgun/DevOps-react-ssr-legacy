@@ -15,7 +15,4 @@ jobs:
 
       - name: Install dependency
         run: yarn
-      - run:
-          name: Build
-          command: yarn build
         
