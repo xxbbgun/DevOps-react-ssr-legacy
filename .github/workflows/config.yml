@@ -9,15 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: node:16
-    
     steps:
       - name: Check code
         uses: actions/checkout@v3
 
       - name: Install dependency
         run: yarn
-      - name: Build the Docker image
-       runs:
-        using: 'docker'
-        image: 'app-dev'
         
