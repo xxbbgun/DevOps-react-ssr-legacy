@@ -5,8 +5,8 @@ on:
   pull_request:
     branches: [ develop ]
 env:
-  DOCKER_USER: tharinee35033
-  DOCKER_PASSWORD: tharinee35033
+  DOCKER_USER: ${{secrets.DOCKER_USER}}
+  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   REPO_NAME: docker-push-production
 jobs:
   build:
