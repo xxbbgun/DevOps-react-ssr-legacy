@@ -18,6 +18,11 @@ jobs:
 
       - name: Install dependency
         run: yarn
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run test
+        run: yarn test
   push-image-to-docker-hub:
     needs:  build
     runs-on: ubuntu-latest  
