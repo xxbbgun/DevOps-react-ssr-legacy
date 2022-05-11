@@ -18,17 +18,13 @@ jobs:
 
       - name: Install dependency
         run: yarn
-   pull-code:
-   needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Pull code
-        run: docker pull tharinee35033/docker-push-production:tagname
   push-image-to-docker-hub:
     needs:  pull-code
     runs-on: ubuntu-latest  
     steps:
       - uses: actions/checkout@v2 
+      - name: Pull code
+        run: docker pull tharinee35033/docker-push-production:tagname
       - name: docker login
         run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD  
       - name: Get current date 
