@@ -32,7 +32,5 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
       - name: Build the Docker image 
         run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:latest
-      - name: Docker tag
-        run: docker tag 80346d103afb $DOCKER_USER/$REPO_NAME:latest
       - name: Docker Push
         run: docker push $DOCKER_USER/$REPO_NAME:latest
